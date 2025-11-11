@@ -113,16 +113,3 @@ CREATE OR REPLACE TABLE SALES_DB_NOV.RAW_LAYER.SALES_ORDERS (
 
 
 
-
-
-
---Connect with aws
-CREATE OR REPLACE STAGE staging_layer.aws_stage
-    URL = 's3://course-data-warehouse-viki/DataWarehouseAndSnowflake/'
-    CREDENTIALS = (
-        AWS_KEY_ID = 'AKIAYZE6FEMCHPUZKOEW'
-        AWS_SECRET_KEY = '4vZO+2XDlLgO5S1+ssGK2/pv+R/pZ4eSdcEsooYq'
-        );
-
---we take local
-CREATE OR REPLACE STAGE staging_layer.local_stage;
