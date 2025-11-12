@@ -10,3 +10,8 @@
 # See the files in AWS via Snowflake with  LIST @staging_layer.aws_stage;
 
 <img width="1623" height="183" alt="image" src="https://github.com/user-attachments/assets/9a74efdd-0e15-4ba9-bfb4-4be6692403b2" />
+
+
+#load data
+
+<img width="1639" height="375" alt="image" src="https://github.com/user-attachments/assets/9ac65421-cc21-45a5-8d69-1a23fc4c67fb" />
