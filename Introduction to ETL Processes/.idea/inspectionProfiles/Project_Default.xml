@@ -1,0 +1,27 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="asgiref" />
+          <option value="Django" />
+          <option value="sqlparse" />
+          <option value="typing_extensions" />
+          <option value="tzdata" />
+          <option value="psycopg2" />
+          <option value="psycopg2-binary" />
+          <option value="psycopg" />
+          <option value="psycopg-binary" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="OOP_10_Testing.Lab.IntegerList.IntegerList.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
