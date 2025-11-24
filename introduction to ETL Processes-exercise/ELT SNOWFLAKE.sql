@@ -13,7 +13,7 @@ CREATE FILE FORMAT SALES_DATAVASE_NOV.STAGING_LAYER.CSV_FORMAT
 
 CREATE STAGE SALES_DATAVASE_NOV.STAGING_LAYER.AWS_STAGE
 url = 's3://course-data-warehouse-viki/ETLANDELT/'
-    credentials=(aws_key_id=' AKIAYZE6FEMCNFXKWBVZ ', aws_secret_key= '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 ');
+    credentials=(aws_key_id='', aws_secret_key= '');
 
 LIST @SALES_DATAVASE_NOV.STAGING_LAYER.AWS_STAGE;
 
