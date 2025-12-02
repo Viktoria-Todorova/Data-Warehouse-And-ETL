@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/04c59aae-9897-4727-83c8-33055c4d7ee1/console.sql" value="04c59aae-9897-4727-83c8-33055c4d7ee1" />
+    <file url="file://$PROJECT_DIR$/Data-Warehouse-and-Snowflake-Exercise/excersise-snowflake-fundamentals.sql" value="04c59aae-9897-4727-83c8-33055c4d7ee1" />
+  </component>
+</project>
