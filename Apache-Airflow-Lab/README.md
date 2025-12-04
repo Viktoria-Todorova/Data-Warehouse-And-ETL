@@ -12,3 +12,9 @@ astro dev init
 <img width="1844" height="758" alt="image" src="https://github.com/user-attachments/assets/ee5f82ce-5dae-4e78-b73a-c1098fe5fbc7" />
 
 open Pycharm
+
+ pip install pandas numpy apache-airflow requests
+
+### start docker ->  astro dev start
+
+ <img width="965" height="77" alt="image" src="https://github.com/user-attachments/assets/c5f9c6a1-9cf1-4d4f-9367-f81e7dd0ab21" />
