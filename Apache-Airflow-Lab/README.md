@@ -15,6 +15,14 @@ open Pycharm
 
  pip install pandas numpy apache-airflow requests
 
-### start docker ->  astro dev start
+### start docker, but dont start the containers ->  astro dev start
 
  <img width="965" height="77" alt="image" src="https://github.com/user-attachments/assets/c5f9c6a1-9cf1-4d4f-9367-f81e7dd0ab21" />
+
+
+<img width="1310" height="180" alt="image" src="https://github.com/user-attachments/assets/9505b613-98ef-48c5-a4ce-047fd31897b6" />
+
+
+it will open 
+
+<img width="1900" height="897" alt="image" src="https://github.com/user-attachments/assets/474340dd-4b0d-4766-83c1-0629fbe137b2" />
