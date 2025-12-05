@@ -36,3 +36,30 @@ it will open
 <img width="1223" height="585" alt="image" src="https://github.com/user-attachments/assets/70cdfe26-7004-4dc7-b6d9-e235d2865592" />
 
 
+Save the installed packages
+ pip freeze > requirements.txt
+
+ S3
+ upload the file 
+
+ <img width="1908" height="575" alt="image" src="https://github.com/user-attachments/assets/adbf5b63-1f0e-4623-8f71-b025c5567f74" />
+
+Snowflake
+
+Create DATABASE airflo_dag_db;
+
+-> Create the table to mach the name of the colums ex.
+
+Create TABLE sales_summary(
+region STRING,
+sales NUMERIC
+);
+
+IN the congig.yaml we need account
+we take it from snowflake 
+<img width="765" height="742" alt="image" src="https://github.com/user-attachments/assets/b61ba3df-a357-4edd-bf7a-a8a6e6a7624d" />
+
+<img width="1096" height="722" alt="image" src="https://github.com/user-attachments/assets/24ad78ca-8640-4c9c-8f49-adec4e84b52a" />
+
+To do the connection in Airflow we go Admin > Connections
+
