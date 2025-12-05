@@ -26,3 +26,13 @@ open Pycharm
 it will open 
 
 <img width="1900" height="897" alt="image" src="https://github.com/user-attachments/assets/474340dd-4b0d-4766-83c1-0629fbe137b2" />
+
+## the name of the DAG
+
+<img width="1866" height="368" alt="image" src="https://github.com/user-attachments/assets/86086007-e673-43f8-a565-9b449981d69f" />
+
+### is the name of the function
+
+<img width="1223" height="585" alt="image" src="https://github.com/user-attachments/assets/70cdfe26-7004-4dc7-b6d9-e235d2865592" />
+
+
