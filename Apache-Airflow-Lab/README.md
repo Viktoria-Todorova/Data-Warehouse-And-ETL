@@ -63,3 +63,5 @@ we take it from snowflake
 
 To do the connection in Airflow we go Admin > Connections
 
+connect to snowflake 
+<img width="1154" height="868" alt="image" src="https://github.com/user-attachments/assets/924372cf-08c6-417f-8488-fb20abb91ec4" />
