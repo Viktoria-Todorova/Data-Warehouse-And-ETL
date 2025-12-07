@@ -1,0 +1,11 @@
+aws_conn_id: aws_conn_id
+s3:
+  bucket: course-data-warehouse-viki
+  folder: AirflowPipeline/aggregated_sales_large.csv
+snowflake:
+  conn_id: my_snowflake_conn
+  account: UNTVDPP-YF79857
+  warehouse: COMPUTE_WH
+  database: AIRFLOW_DAG_DB
+  schema: PUBLIC
+  table: sales_summary
