@@ -217,4 +217,5 @@ def etl_pipeline_dag():
                            config["snowflake"]["targets"]["monthly_sales"]["schema"],
                            config["snowflake"]["targets"]["monthly_sales"]["table"])
     files >> [sales_file, customers_file, product_file]
+
 etl_pipeline_dag()
