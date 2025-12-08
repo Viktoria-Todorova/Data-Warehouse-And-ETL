@@ -44,3 +44,8 @@ Maintain consistent indentation
 Incorrect formatting may produce errors like:
 
       TypeError: string indices must be integers, not 'str'
+
+Airflow after running the pipeline
+
+  <img width="1820" height="838" alt="image" src="https://github.com/user-attachments/assets/d68cecaa-02e3-411f-a490-65a5ec3e8007" />
+
