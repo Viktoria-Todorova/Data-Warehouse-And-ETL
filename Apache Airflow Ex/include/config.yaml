@@ -1,0 +1,22 @@
+aws_conn_id: aws_conn_id
+
+s3:
+  bucket: course-data-warehouse-viki
+  folder: AirflowPipeline/
+
+snowflake:
+  conn_id: my_snowflake_conn
+  database: SALES_DB_NOV_AIRFLOW
+  targets:
+    sales:
+      schema: cleansing_layer
+      table: sales
+    customers:
+      schema: cleansing_layer
+      table: customers
+    products:
+      schema: cleansing_layer
+      table: products
+    monthly_sales:
+      schema: presentation_layer
+      table: monthly_sales_summary
