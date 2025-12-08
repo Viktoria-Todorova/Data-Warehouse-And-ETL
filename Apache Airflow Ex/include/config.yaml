@@ -9,13 +9,13 @@ snowflake:
   database: SALES_DB_NOV_AIRFLOW
   targets:
     sales:
-      schema: cleansing_layer
+      schema: CLEANSED_LAYER
       table: sales
     customers:
-      schema: cleansing_layer
+      schema: CLEANSED_LAYER
       table: customers
     products:
-      schema: cleansing_layer
+      schema: CLEANSED_LAYER
       table: products
     monthly_sales:
       schema: presentation_layer
