@@ -49,3 +49,5 @@ Airflow after running the pipeline
 
   <img width="1820" height="838" alt="image" src="https://github.com/user-attachments/assets/d68cecaa-02e3-411f-a490-65a5ec3e8007" />
 
+
+<img width="994" height="570" alt="image" src="https://github.com/user-attachments/assets/f2b45802-0851-44a3-81a9-29551c40d250" />
