@@ -63,6 +63,8 @@ End-to-end ETL pipeline that extracts retail sales data from S3, transforms it u
 - Create Airflow DAG to automate the pipeline
 - Schedule and monitor ETL jobs
 
+<img width="1418" height="769" alt="image" src="https://github.com/user-attachments/assets/41e2ce41-1308-4e52-9aa9-c0fea2870a5a" />
+
 ## Snowflake Schema Structure
 ```
 RETAIL_DB_NOV
@@ -128,6 +130,8 @@ retail_etl_project/
     └── dags/
         └── test_dag_example.py
 ```
+
+
 
 ## Security Notes
 - Never commit AWS credentials to version control
