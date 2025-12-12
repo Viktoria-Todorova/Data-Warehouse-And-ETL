@@ -1,0 +1,6 @@
+aws_conn_id : aws_conn_id
+
+s3:
+  bucket: course-data-warehouse-viki
+  folder: Exam/
+  output_folder : OutputExam
