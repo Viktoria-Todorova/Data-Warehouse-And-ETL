@@ -16,3 +16,20 @@
 ##Pycharm Project
 
 5. include -> create config.yaml
+   
+         aws_conn_id : aws_conn_id
+        
+        s3:
+          bucket: course-data-warehouse-viki
+          folder: Exam/
+          output_folder : OutputExam
+    
+
+6. include -> create logger.py
+
+8. include-> etl -> extract_s3
+9. dags -> globo_retail_etl_dag    -> extract_data_group()
+
+<img width="692" height="432" alt="image" src="https://github.com/user-attachments/assets/a09c9068-78c8-4fcd-8d18-a1f730d96855" />
+
+   
