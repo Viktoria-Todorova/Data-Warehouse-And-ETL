@@ -1,45 +1,135 @@
-Overview
-========
+# Retail ETL Pipeline Project
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+## Overview
+End-to-end ETL pipeline that extracts retail sales data from S3, transforms it using Pandas with Pandera validation, and loads enriched datasets into Snowflake for analytics.
 
-Project Contents
-================
+## Architecture
+**Extract** → S3 (CSV/JSON) → **Transform** → Pandas + Pandera → **Load** → S3 → Snowflake
 
-Your Astro project contains the following files and folders:
+## Project Phases
 
-- dags: This folder contains the Python files for your Airflow DAGs. By default, this directory includes one example DAG:
-    - `example_astronauts`: This DAG shows a simple ETL pipeline example that queries the list of astronauts currently in space from the Open Notify API and prints a statement for each astronaut. The DAG uses the TaskFlow API to define tasks in Python, and dynamic task mapping to dynamically print a statement for each astronaut. For more on how this DAG works, see our [Getting started tutorial](https://www.astronomer.io/docs/learn/get-started-with-airflow).
-- Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
-- include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
-- packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
-- requirements.txt: Install Python packages needed for your project by adding them to this file. It is empty by default.
-- plugins: Add custom or community plugins for your project to this file. It is empty by default.
-- airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
+### Phase 1: Project Setup
+- Create `retail_etl_project` directory
+- Initialize virtual environment
+- Install dependencies: `boto3`, `pandas`, `pandera`, `snowflake-connector-python`, `pyyaml`, `apache-airflow`
 
-Deploy Your Project Locally
-===========================
+### Phase 2: Configuration Management
+- Define credentials and paths in `config.yaml`
+- Manage AWS keys, Snowflake connection strings, S3 paths
 
-Start Airflow on your local machine by running 'astro dev start'.
+### Phase 3: Data Extraction
+- Use `boto3` to connect to S3
+- Create reusable extract functions for CSV and JSON files
+- Read raw sales and product metadata
 
-This command will spin up five Docker containers on your machine, each for a different Airflow component:
+### Phase 4: Input Validation
+- Define Pandera schemas for raw input data
+- Validate data quality before transformation
 
-- Postgres: Airflow's Metadata Database
-- Scheduler: The Airflow component responsible for monitoring and triggering tasks
-- DAG Processor: The Airflow component responsible for parsing DAGs
-- API Server: The Airflow component responsible for serving the Airflow UI and API
-- Triggerer: The Airflow component responsible for triggering deferred tasks
+### Phase 5: Data Transformation
+#### Sales Cleaning
+- Normalize columns to snake_case
+- Clean region values (lowercase, strip whitespace)
+- Drop missing region/timestamp
+- Remove invalid prices (≤0) and quantities (≤0)
+- Convert timestamp to datetime
+- Recalculate total_sales
 
-When all five containers are ready the command will open the browser to the Airflow UI at http://localhost:8080/. You should also be able to access your Postgres Database at 'localhost:5432/postgres' with username 'postgres' and password 'postgres'.
+#### Product Cleaning
+- Normalize columns to snake_case
+- Standardize brand (uppercase) and category (lowercase)
+- Drop missing product_id/rating
+- Remove duplicates
 
-Note: If you already have either of the above ports allocated, you can either [stop your existing Docker containers or change the port](https://www.astronomer.io/docs/astro/cli/troubleshoot-locally#ports-are-not-available-for-my-local-airflow-webserver).
+#### Data Enrichment
+- **Merge**: Join sales with products on product_id
+- **Enrich**: Extract temporal features (month, weekday, hour)
+- Create sales_bucket using `pd.cut()` on total_sales
 
-Deploy Your Project to Astronomer
-=================================
+#### Analytics Outputs
+1. **Hourly Sales Trend**: Peak sales hours by region and category
+2. **Product Sales Ranking**: Rank products by revenue and categorize (Bestseller/Average/Low Performer)
+3. **Seasonal Sales Patterns**: Quarterly sales analysis by category
+4. **Revenue Concentration**: Regional revenue distribution and cumulative share analysis
 
-If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://www.astronomer.io/docs/astro/deploy-code/
+### Phase 6: Data Loading
+- Upload transformed DataFrames to S3
+- Load from S3 into Snowflake tables:
+  - `CLEANSED` schema: cleaned_sales, cleaned_products
+  - `BUSINESS` schema: merged_sales_products, enriched_sales
+  - `PRESENTATION` schema: hourly_sales_trend, product_sales_ranking, seasonal_sales_patterns, revenue_concentration
 
-Contact
-=======
+### Phase 7: Orchestration
+- Create Airflow DAG to automate the pipeline
+- Schedule and monitor ETL jobs
 
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
+## Snowflake Schema Structure
+```
+RETAIL_DB_NOV
+├── STAGING_LAYER (S3 stage)
+├── CLEANSED (cleaned data)
+├── BUSINESS (merged & enriched)
+└── PRESENTATION (analytics)
+```
+
+## Validation Strategy
+All transformations include Pandera schema validation to ensure data quality at each stage:
+- Pre-transform validation (input)
+- Post-transform validation (output)
+- Analytics validation (final)
+
+## Key Technologies
+- **Extraction**: boto3
+- **Transformation**: Pandas, Pandera
+- **Loading**: Snowflake Connector
+- **Orchestration**: Apache Airflow (Astro CLI)
+- **Configuration**: PyYAML
+
+## Getting Started
+```bash
+# Create project
+mkdir retail_etl_project && cd retail_etl_project
+
+# Set up environment
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+# Install dependencies
+pip install boto3 pandas pandera snowflake-connector-python pyyaml apache-airflow
+
+# Configure credentials
+cp config.yaml.example config.yaml
+# Edit config.yaml with your credentials
+```
+
+## Project Structure
+```
+retail_etl_project/
+├── venv/                      # Virtual environment (ignore)
+├── dags/
+│   ├── retail_etl_dag.py
+│   └── .airflowignore
+├── include/
+│   ├── config.yaml
+│   ├── etl/
+│   │   ├── extract_data.py
+│   │   ├── load_data.py
+│   │   └── transform.py
+│   └── validations/
+│       ├── sales_schema.py
+│       ├── product_schema.py
+│       ├── enrich_schema.py
+│       ├── hourly_sales.py
+│       ├── product_sales_schema.py
+│       ├── revenue_shema.py
+│       └── seasonal_sales_schema.py
+├── plugins/                   # Empty
+└── tests/
+    └── dags/
+        └── test_dag_example.py
+```
+
+## Security Notes
+- Never commit AWS credentials to version control
+- Use environment variables or secret managers
+- Rotate credentials regularly
