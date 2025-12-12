@@ -87,22 +87,6 @@ All transformations include Pandera schema validation to ensure data quality at 
 - **Orchestration**: Apache Airflow (Astro CLI)
 - **Configuration**: PyYAML
 
-## Getting Started
-```bash
-# Create project
-mkdir retail_etl_project && cd retail_etl_project
-
-# Set up environment
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-
-# Install dependencies
-pip install boto3 pandas pandera snowflake-connector-python pyyaml apache-airflow
-
-# Configure credentials
-cp config.yaml.example config.yaml
-# Edit config.yaml with your credentials
-```
 
 ## Project Structure
 ```
