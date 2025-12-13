@@ -66,3 +66,20 @@ The transformed sales:
 
 <img width="733" height="398" alt="image" src="https://github.com/user-attachments/assets/d28d7036-4eca-49db-9d71-331c1f7443f7" />
 
+
+# Snowflake 
+
+1.Created a role
+2.created the warehouse
+3.Create the database
+4.create the schemas
+5.create the format
+6. create aws connection
+7. create tables and insert into them the cleaned tables from the previous steps
+8. build star schema
+9. create ERD in DBeaver to check the connection 
+
+
+<img width="1708" height="906" alt="image" src="https://github.com/user-attachments/assets/ec5ee71c-b24f-46e5-959c-9f4956bd8b8b" />
+
+
