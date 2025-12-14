@@ -52,3 +52,4 @@ def merge_data(sales_df:pd.DataFrame, product_df:pd.DataFrame) -> pd.DataFrame:
 
     logging.info(f"completed merging and aggregating sales data with products")
     return merged_df
+
