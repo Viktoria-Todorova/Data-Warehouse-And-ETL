@@ -82,4 +82,7 @@ The transformed sales:
 
 <img width="1708" height="906" alt="image" src="https://github.com/user-attachments/assets/ec5ee71c-b24f-46e5-959c-9f4956bd8b8b" />
 
+#
+
+<img width="1819" height="825" alt="image" src="https://github.com/user-attachments/assets/66207a66-988c-4457-93c4-0a46018afd9e" />
 
