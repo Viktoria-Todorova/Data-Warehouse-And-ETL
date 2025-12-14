@@ -52,6 +52,7 @@ def clean_products_data(products_df: pd.DataFrame) -> pd.DataFrame:
     logging.info(f"cleaned products data from {len(products_df)} records")
     return products_df
 
+
 #Merge Data: Combine different datasets to prepare them for analysis.Compute an extra field like profit_margin (e.g., profit divided by amount).
 def merge_data(sales_df: pd.DataFrame, customers_df: pd.DataFrame, products_df: pd.DataFrame) -> pd.DataFrame:
     """"
