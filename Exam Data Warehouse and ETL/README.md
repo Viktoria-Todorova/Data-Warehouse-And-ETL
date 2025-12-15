@@ -1,7 +1,6 @@
 # DATA WAREHOUSE AND ETL EXAM PROCESS 
  
- ![15633](https://github.com/user-attachments/assets/bcb71e92-cc15-4d67-bdcd-6fa342bb7325)
-
+## ETL Airflow
 
  1.astro dev init
  
@@ -53,9 +52,16 @@ Succsesful test Run of DAG till now:
 
 <img width="729" height="281" alt="image" src="https://github.com/user-attachments/assets/ff783a99-8b6c-4162-ad5d-a5e7731ec67d" />
 
+Merge the two tables:
+And load all the files in s3:
+
+<img width="1009" height="365" alt="image" src="https://github.com/user-attachments/assets/0c2f4a0c-5afc-436c-9993-84b0670d7a9b" />
+
+
 The output files could be found in S3 
 
-<img width="1745" height="439" alt="image" src="https://github.com/user-attachments/assets/dee48cb4-7180-4acd-9fb4-80c2bdecca17" />
+<img width="1553" height="569" alt="image" src="https://github.com/user-attachments/assets/78b7936b-77c8-43ea-b54b-1f5006942463" />
+
 
 
 The transformed products :
@@ -67,22 +73,30 @@ The transformed sales:
 <img width="733" height="398" alt="image" src="https://github.com/user-attachments/assets/d28d7036-4eca-49db-9d71-331c1f7443f7" />
 
 
-# Snowflake 
+## ELT - Snowflake 
 
 1.Created a role
+
 2.created the warehouse
+
 3.Create the database
+
 4.create the schemas
+
 5.create the format
+
 6. create aws connection
+
 7. create tables and insert into them the cleaned tables from the previous steps
-8. build star schema
+
+9. build star schema
+    
 9. create ERD in DBeaver to check the connection 
 
 
 <img width="1708" height="906" alt="image" src="https://github.com/user-attachments/assets/ec5ee71c-b24f-46e5-959c-9f4956bd8b8b" />
 
-#
 
-<img width="1819" height="825" alt="image" src="https://github.com/user-attachments/assets/66207a66-988c-4457-93c4-0a46018afd9e" />
+
+
 
