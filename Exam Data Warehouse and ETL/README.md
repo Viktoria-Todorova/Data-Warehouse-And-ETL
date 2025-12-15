@@ -6,9 +6,8 @@
  
  2.astro dev start
  
- 4. connect Airflow to Snowflake and AWS via Admin -> Connections > Add connection
- 
-<img width="885" height="717" alt="image" src="https://github.com/user-attachments/assets/107e55df-d17b-45d8-a9cb-5daa52644cd8" />
+ 4. connect Airflow to AWS
+
 
 ## Pycharm Project
 
