@@ -50,13 +50,16 @@ def merge_data(sales_df:pd.DataFrame, product_df:pd.DataFrame) -> pd.DataFrame:
     logging.info(f"merging sales data with products")
 
     merged_df = sales_df.merge(product_df, on="product_id", how="inner").copy()
-    merged_df["total_sales"] = merged_df["quantity"] * merged_df["price"] * (1 - merged_df["discount"].fillna(0))
-
-    merged_df = merged_df.groupby(["category", "timestamp"], as_index=False).agg({
-        "quantity": "sum",
-        "total_sales": "sum"
-    }).rename(columns={"quantity": "total_quantity"})
+    # merged_df["total_sales"] = merged_df["quantity"] * merged_df["price"] * (1 - merged_df["discount"].fillna(0))
+    #
+    # merged_df = merged_df.groupby(["category", "timestamp"], as_index=False).agg({
+    #     "quantity": "sum",
+    #     "total_sales": "sum"
+    # }).rename(columns={"quantity": "total_quantity"})
 
     logging.info(f"completed merging and aggregating sales data with products")
     return merged_df
+
+
+
 

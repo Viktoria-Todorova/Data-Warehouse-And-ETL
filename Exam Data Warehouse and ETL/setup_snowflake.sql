@@ -56,17 +56,22 @@ CREATE OR REPLACE TABLE AIRFLOW_EXAM_DEC.CLEANSED_LAYER.CLEANED_PRODUCTS (
     launch_date     DATE
 );
 
--- Pre-aggregated sales by category and date #TODO
-CREATE or replace TABLE AIRFLOW_EXAM_DEC.BUSINESS_LAYER.PRODUCT_SALES AS
-    SELECT
-        p.category,
-        s.timestamp,
-        SUM(s.quantity) AS total_quantity,
-        SUM(s.quantity * s.price * (1 - COALESCE(s.discount,0))) AS total_sales
-    FROM AIRFLOW_EXAM_DEC.CLEANSED_LAYER.CLEANED_PRODUCTS p
-    JOIN AIRFLOW_EXAM_DEC.CLEANSED_LAYER.CLEANED_SALES s
-    ON p.product_id = s.product_id
-    group by p.category,s.timestamp;
+-- merged product sales table
+CREATE or replace TABLE AIRFLOW_EXAM_DEC.CLEANSED_LAYER.PRODUCT_SALES (
+    sales_id        INT,
+    product_id      INT,
+    region          STRING,
+    quantity        INT,
+    price           NUMERIC(10, 2),
+    timestamp       DATE,
+    discount     NUMERIC(10, 2),
+    order_status STRING,
+    category        STRING,
+    brand           STRING,
+    rating          NUMERIC(10, 2),
+    in_stock        BOOLEAN,
+    launch_date     DATE
+   );
 
 -- Load cleaned sales/product/merged-aggregated data from Airflow output
 
@@ -84,11 +89,11 @@ FILES = ('cleaned_products.csv'),
 ON_ERROR = 'CONTINUE';
 select * from AIRFLOW_EXAM_DEC.CLEANSED_LAYER.CLEANED_PRODUCTS
 
-COPY INTO AIRFLOW_EXAM_DEC.BUSINESS_LAYER.PRODUCT_SALES
+COPY INTO AIRFLOW_EXAM_DEC.CLEANSED_LAYER.PRODUCT_SALES
 FROM @AIRFLOW_EXAM_DEC.STAGING_LAYER.RETAIL_S3_STAGE
 FILES = ('merged_products_sales.csv'),
 ON_ERROR = 'CONTINUE';
-select * from AIRFLOW_EXAM_DEC.BUSINESS_LAYER.PRODUCT_SALES
+select * from AIRFLOW_EXAM_DEC.CLEANSED_LAYER.PRODUCT_SALES
 
 
 -- ============================================================================
@@ -236,8 +241,9 @@ SELECT
     category,
     YEAR(timestamp) AS year,
     MONTHNAME(timestamp) AS month,
-    total_quantity,
-    total_sales
-from AIRFLOW_EXAM_DEC.BUSINESS_LAYER.PRODUCT_SALES;
+    sum(quantity) as total_quantity,
+    SUM(quantity * price * (1 - COALESCE(discount, 0))) AS total_sales
+from AIRFLOW_EXAM_DEC.CLEANSED_LAYER.PRODUCT_SALES
+group by category, year,month;
 
 SELECT * FROM AIRFLOW_EXAM_DEC.PRESENTATION.MV_CATEGORY_PERFORMANCE;
