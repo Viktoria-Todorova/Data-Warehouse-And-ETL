@@ -6,13 +6,11 @@
  
  2.astro dev start
  
- 3. pip install -r requirements.txt
- 
  4. connect Airflow to Snowflake and AWS via Admin -> Connections > Add connection
  
 <img width="885" height="717" alt="image" src="https://github.com/user-attachments/assets/107e55df-d17b-45d8-a9cb-5daa52644cd8" />
 
-##Pycharm Project
+## Pycharm Project
 
 5. include -> create config.yaml
    
@@ -96,6 +94,21 @@ The transformed sales:
 
 <img width="1708" height="906" alt="image" src="https://github.com/user-attachments/assets/ec5ee71c-b24f-46e5-959c-9f4956bd8b8b" />
 
+
+10.Create Materialized Analytical Views
+## 📊 Presentation Layer – Materialized Views
+
+### MV_SALES_BY_REGION_MONTH
+Provides monthly sales aggregation by region, including total orders and total revenue, enabling regional performance analysis over time.
+
+### MV_TOP_PRODUCTS_BY_REVENUE
+Aggregates total revenue by product and categorizes products into Top, Middle, and Low revenue tiers based on sales thresholds.
+
+### MV_REVENUE_TREND
+Summarizes total revenue by year and month to support analysis of revenue trends over time.
+
+### MV_CATEGORY_PERFORMANCE
+Displays category-level sales performance by month and year, including total quantity sold and total sales value.
 
 
 
