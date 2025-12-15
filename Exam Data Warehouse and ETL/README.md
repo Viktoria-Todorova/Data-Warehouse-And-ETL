@@ -111,5 +111,8 @@ Summarizes total revenue by year and month to support analysis of revenue trends
 Displays category-level sales performance by month and year, including total quantity sold and total sales value.
 
 
+https://github.com/Viktoria-Todorova/Data-Warehouse-And-ETL/blob/PB_Excersises/Exam%20Data%20Warehouse%20and%20ETL/README.md
+
+
 
 
