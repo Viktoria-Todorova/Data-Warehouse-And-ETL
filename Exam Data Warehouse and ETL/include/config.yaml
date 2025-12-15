@@ -5,16 +5,3 @@ s3:
   folder: Exam/
   output_folder : OutputExam
 
-snowflake:
-  conn_id: my_snowflake_conn
-  database: AIRFLOW_EXAM_DEC
-  targets:
-    sales:
-      schema: CLEANSED_LAYER
-      table: CLEANED_SALES
-    products:
-      schema: CLEANSED_LAYER
-      table: CLEANED_PRODUCTS
-    merged:
-      schema: ANALYTICS_LAYER
-      table: product_sales

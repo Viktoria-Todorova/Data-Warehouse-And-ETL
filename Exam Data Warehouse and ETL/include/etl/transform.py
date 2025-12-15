@@ -8,7 +8,10 @@ logging = setup_logger("etl.transform_data")
 
 
 def transform_sales_data(sales_df:pd.DataFrame) -> pd.DataFrame:
-
+    """
+       Clean and standardize sales data: normalize columns, remove invalid records, and convert timestamps.
+       Returns validated DataFrame with standardized region names and positive quantities/prices only.
+    """
     sales_df.columns = sales_df.columns.str.strip().str.lower().str.replace(' ', '_')
     sales_df = sales_df.rename(columns={
         "qty": "quantity",
@@ -17,13 +20,15 @@ def transform_sales_data(sales_df:pd.DataFrame) -> pd.DataFrame:
 
     sales_df = sales_df.dropna(subset=["region"])
     sales_df["region"] = sales_df["region"].str.lower()
-    sales_df=sales_df.rename(columns={"qty": "quantity"})
     sales_df = sales_df[(sales_df["quantity"] > 0) & (sales_df["price"] > 0)]
     sales_df["timestamp"] = pd.to_datetime(sales_df["timestamp"], format="mixed", errors="coerce")
-
+    # sales_df["timestamp"] = sales_df["timestamp"].dt.floor('D').dt.date
     return validate_output_sales_schema(sales_df)
 
 def transform_product_data(product_df:pd.DataFrame) -> pd.DataFrame:
+    """
+       Clean and standardize product data
+    """
     product_df = validate_input_product_schema(product_df)
     product_df.columns = product_df.columns.str.strip().str.replace(' ', '_')
     product_df["category"] = product_df["category"].str.lower()
@@ -33,13 +38,15 @@ def transform_product_data(product_df:pd.DataFrame) -> pd.DataFrame:
     product_df = product_df[product_df["rating"] >= 0]
     product_df=  product_df.dropna(subset=["launch_date"])
     product_df["launch_date"] = pd.to_datetime(product_df["launch_date"], format="mixed", errors="coerce")
-
-
     product_df = product_df.drop_duplicates()
 
     return validate_output_product_schema(product_df)
 
 def merge_data(sales_df:pd.DataFrame, product_df:pd.DataFrame) -> pd.DataFrame:
+    """
+       Merge sales and product data, calculate total sales, and aggregate by category and timestamp.
+       Returns DataFrame with total_quantity and total_sales grouped by category and date.
+    """
     logging.info(f"merging sales data with products")
 
     merged_df = sales_df.merge(product_df, on="product_id", how="inner").copy()

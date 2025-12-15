@@ -23,6 +23,9 @@ product_output_schema =pa.DataFrameSchema({
 })
 
 def validate_input_product_schema(product_df:pd.DataFrame) -> pd.DataFrame:
+    """
+        Validate raw product data
+    """
     try:
         product_input_schema.validate(product_df)
     except SchemaError as e:
@@ -30,4 +33,7 @@ def validate_input_product_schema(product_df:pd.DataFrame) -> pd.DataFrame:
     return product_df
 
 def validate_output_product_schema(product_df:pd.DataFrame) -> pd.DataFrame:
+    """
+        Validate transformed product data
+    """
     return product_output_schema.validate(product_df)

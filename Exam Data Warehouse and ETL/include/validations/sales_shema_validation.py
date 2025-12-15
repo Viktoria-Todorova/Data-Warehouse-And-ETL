@@ -18,5 +18,7 @@ sales_output_schema = pa.DataFrameSchema(
 )
 
 def validate_output_sales_schema(sales_df:pd.DataFrame) -> pd.DataFrame:
-
+    """
+            Validate transformed sales data
+    """
     return sales_output_schema.validate(sales_df)

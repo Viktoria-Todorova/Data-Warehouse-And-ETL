@@ -22,6 +22,11 @@ def get_storage_options(aws_conn_id: str):
 
 
 def extract_file_from_s3(bucket: str, folder: str, aws_conn_id: str, file_type: str) -> list:
+    """
+        Extract and validate files from S3 bucket by file type (csv/json).
+        Returns list of S3 paths for valid, non-empty files that can be read as DataFrames.
+    """
+
     s3_hook, _ = get_storage_options(aws_conn_id)
     keys = s3_hook.list_keys(bucket_name=bucket, prefix=folder)
 
@@ -70,6 +75,6 @@ def extract_csv_data_from_s3(bucket: str, folder: str, aws_conn_id: str) -> list
 
 def extract_json_from_s3(bucket: str, folder: str, aws_conn_id: str) -> list:
     """
-    Read JSON from S3 using pandas
+    Read JSON from S3
     """
     return extract_file_from_s3(bucket, folder, aws_conn_id, file_type="json")
