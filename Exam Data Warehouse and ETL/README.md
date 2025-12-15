@@ -1,12 +1,12 @@
 # DATA WAREHOUSE AND ETL EXAM PROCESS 
  
-## ETL Airflow
+## -> ETL Airflow
 
  1.astro dev init
  
  2.astro dev start
  
- 4. connect Airflow to AWS
+3.connect Airflow to AWS
 
 
 ## Pycharm Project
@@ -49,28 +49,29 @@ Succsesful test Run of DAG till now:
 
 <img width="729" height="281" alt="image" src="https://github.com/user-attachments/assets/ff783a99-8b6c-4162-ad5d-a5e7731ec67d" />
 
-Merge the two tables:
-And load all the files in s3:
+13.Merge the two tables:
+
+14.And load all the files in s3:
 
 <img width="1009" height="365" alt="image" src="https://github.com/user-attachments/assets/0c2f4a0c-5afc-436c-9993-84b0670d7a9b" />
 
 
-The output files could be found in S3 
+15.The output files could be found in S3 
 
 <img width="1553" height="569" alt="image" src="https://github.com/user-attachments/assets/78b7936b-77c8-43ea-b54b-1f5006942463" />
 
 
 
-The transformed products :
+16.The transformed products :
 
 <img width="589" height="206" alt="image" src="https://github.com/user-attachments/assets/6a89a54c-9c14-4677-ab88-d79b7e2bb011" />
 
-The transformed sales:
+17.The transformed sales:
 
 <img width="733" height="398" alt="image" src="https://github.com/user-attachments/assets/d28d7036-4eca-49db-9d71-331c1f7443f7" />
 
 
-## ELT - Snowflake 
+## -> ELT - Snowflake 
 
 1.Created a role
 
